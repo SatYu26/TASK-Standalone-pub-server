@@ -1,3 +1,22 @@
-h1 {
-  color: green;
+html {
+  overflow-y: auto; /* Show/Hide scrollbars automatically */
+}
+
+body {
+  font-family: "Open Sans", sans-serif; /*Overrides default font*/
+}
+
+::selection {
+  background: #00ff00; /* WebKit/Blink Browsers */
+  color: #ffffff;
+}
+::-moz-selection {
+  background: #00ff00; /* Gecko Browsers */
+  color: #ffffff;
+}
+
+#home-section {
+  background-color: F8F8F8;
+  background-image: url("../images/laptop.jpg") no-repeat;
+  background-size: cover;
 }
