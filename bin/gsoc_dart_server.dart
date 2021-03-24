@@ -12,12 +12,14 @@ void main(List<String> arguments) async {
 
   app.mount('/users/', UserApi().router);
 
-  app.get("/assets/<file|.*>", createStaticHandler('public'));
+  app.get('/assets/<file|.*>', createStaticHandler('public'));
 
   app.get('/<name|.*>', (Request request, String name) {
     final indexFile = File('public/index.html').readAsStringSync();
     return Response.ok(indexFile, headers: {'content-type': 'text/html'});
   });
 
-  await io.serve(app, 'localhost', 8080);
+  final handler = Pipeline().addMiddleware(logRequests()).addHandler(app);
+
+  await io.serve(handler, 'localhost', 8080);
 }
