@@ -6,7 +6,7 @@
 
 - <b>Good Sample Project</b> Figure out how to make a webserver in Dart using shelf, workout how to render HTML templates, convert Dart to JS for use client-side, handle REST requests and generally familiarize yourself with the Dart server stack. A hello world server than can serve files from disk, show some HTML and handle a simple REST request in JSON would be a good sample project.
 
-- `dart bin/gsoc_dart_server.dart`
+- run `dart bin/gsoc_dart_server.dart`
 
 - visit `http://localhost:8080`
 - to view files visit `http://localhost:8080/assets/styles.css` or `http://localhost:8080/users/`
