@@ -5,10 +5,12 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf_static/shelf_static.dart';
 
-import 'package:gsoc_dart_server/gsoc_dart_server.dart' as gsoc_dart_server;
+import 'package:gsoc_dart_server/gsoc_dart_server.dart';
 
 void main(List<String> arguments) async {
   final app = Router();
+
+  app.mount('/users/', UserApi().router);
 
   app.get("/assets/<file|.*>", createStaticHandler('public'));
 
