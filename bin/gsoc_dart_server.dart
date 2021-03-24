@@ -10,6 +10,8 @@ import 'package:gsoc_dart_server/gsoc_dart_server.dart' as gsoc_dart_server;
 void main(List<String> arguments) async {
   final app = Router();
 
+  app.get("/assets/<file|.*>", createStaticHandler('public'));
+
   app.get('/<name|.*>', (Request request, String name) {
     final indexFile = File('public/index.html').readAsStringSync();
     return Response.ok(indexFile, headers: {'content-type': 'text/html'});
