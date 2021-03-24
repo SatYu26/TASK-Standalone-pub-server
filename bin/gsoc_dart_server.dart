@@ -19,7 +19,10 @@ void main(List<String> arguments) async {
     return Response.ok(indexFile, headers: {'content-type': 'text/html'});
   });
 
-  final handler = Pipeline().addMiddleware(logRequests()).addHandler(app);
+  final handler = Pipeline()
+      .addMiddleware(logRequests())
+      .addMiddleware(handleCors())
+      .addHandler(app);
 
   await io.serve(handler, 'localhost', 8080);
 }
