@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Standalone pub Server</title>
     <link rel="stylesheet" href="./assets/styles.css" />
     <style>
       body {
@@ -10,187 +10,36 @@
     </style>
   </head>
   <body>
-    <div
-      class="flex-container center days7"
-      style="position: relative; margin-top: 20vh"
-    >
-      <!--Hours-->
-      <div class="flex-item digit">
-        <div class="digit-inner"></div>
-        <div class="digit-inner-lower blink"></div>
-      </div>
-      <div class="flex-item digit">
-        <div class="digit-inner blink"></div>
-        <div class="digit-inner-lower"></div>
-      </div>
-      <div class="flex-item">
-        <div class="separator">:</div>
-      </div>
-      <!--Minutes-->
-      <div class="flex-item digit">
-        <div class="digit-inner blink"></div>
-        <div class="digit-inner-lower"></div>
-      </div>
-      <div class="flex-item digit">
-        <div class="digit-inner"></div>
-        <div class="digit-inner-lower blink"></div>
-      </div>
-      <div class="flex-item">
-        <div class="separator">:</div>
-      </div>
-      <!--Seconds-->
-      <div class="flex-item digit">
-        <div class="digit-inner blink"></div>
-        <div class="digit-inner-lower"></div>
-      </div>
-      <div class="flex-item digit">
-        <div class="digit-inner"></div>
-        <div class="digit-inner-lower blink"></div>
-      </div>
-    </div>
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
     <script>
-      let x = setInterval(function () {
-        countDown = new Date();
-        distance = countDown;
-        //displaying the seconds
-        getSecs = countDown.getSeconds();
-        let second1 = -1,
-          second2 = -1;
-        second1 = Math.floor(getSecs / 10);
-        second2 = Math.floor(getSecs % 10);
-        secondsFirstDigit = document
-          .getElementsByClassName("days7")[0]
-          .getElementsByClassName("digit")[4];
-        dummy1 = secondsFirstDigit.getElementsByClassName("digit-inner")[0];
-        dummy2 = secondsFirstDigit.getElementsByClassName(
-          "digit-inner-lower"
-        )[0];
-        displayDigit(second1, dummy1, dummy2, secondsFirstDigit);
-        secondsFirstDigit = document
-          .getElementsByClassName("days7")[0]
-          .getElementsByClassName("digit")[5];
-        dummy1 = secondsFirstDigit.getElementsByClassName("digit-inner")[0];
-        dummy2 = secondsFirstDigit.getElementsByClassName(
-          "digit-inner-lower"
-        )[0];
-        displayDigit(second2, dummy1, dummy2, secondsFirstDigit);
+      function showTime() {
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
 
-        //displaying the minutes
-        getMinutes = countDown.getMinutes();
-        minute1 = Math.floor(getMinutes / 10);
-        minute2 = Math.floor(getMinutes % 10);
-        secondsFirstDigit = document
-          .getElementsByClassName("days7")[0]
-          .getElementsByClassName("digit")[2];
-        dummy1 = secondsFirstDigit.getElementsByClassName("digit-inner")[0];
-        dummy2 = secondsFirstDigit.getElementsByClassName(
-          "digit-inner-lower"
-        )[0];
-        displayDigit(minute1, dummy1, dummy2, secondsFirstDigit);
-        secondsFirstDigit = document
-          .getElementsByClassName("days7")[0]
-          .getElementsByClassName("digit")[3];
-        dummy1 = secondsFirstDigit.getElementsByClassName("digit-inner")[0];
-        dummy2 = secondsFirstDigit.getElementsByClassName(
-          "digit-inner-lower"
-        )[0];
-        displayDigit(minute2, dummy1, dummy2, secondsFirstDigit);
-
-        //displaying the hours
-        getHours = countDown.getHours();
-
-        hour1 = Math.floor(getHours / 10);
-        hour2 = Math.floor(getHours % 10);
-        secondsFirstDigit = document
-          .getElementsByClassName("days7")[0]
-          .getElementsByClassName("digit")[0];
-        dummy1 = secondsFirstDigit.getElementsByClassName("digit-inner")[0];
-        dummy2 = secondsFirstDigit.getElementsByClassName(
-          "digit-inner-lower"
-        )[0];
-        displayDigit(hour1, dummy1, dummy2, secondsFirstDigit);
-        secondsFirstDigit = document
-          .getElementsByClassName("days7")[0]
-          .getElementsByClassName("digit")[1];
-        dummy1 = secondsFirstDigit.getElementsByClassName("digit-inner")[0];
-        dummy2 = secondsFirstDigit.getElementsByClassName(
-          "digit-inner-lower"
-        )[0];
-        displayDigit(hour2, dummy1, dummy2, secondsFirstDigit);
-      }, 1000);
-      function displayDigit(digit, dummy1, dummy2, secondsFirstDigit) {
-        secondsFirstDigit.style.border = "none";
-        switch (digit) {
-          case 0:
-            dummy1.style.border = "0.5em solid white";
-            dummy1.style.borderBottom = "none";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderTop = "none";
-            break;
-          case 1:
-            secondsFirstDigit.style.border = "0.6em solid transparent";
-            dummy1.style.border = "none";
-            dummy1.style.borderRight = "0.5em solid white";
-            dummy2.style.border = "none";
-            dummy2.style.borderRight = "0.5em solid white";
-            dummy2.style.borderBottom = "0.5em solid transparent";
-            break;
-          case 2:
-            dummy1.style.border = "0.5em solid white";
-            dummy1.style.borderLeft = "none";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderRight = "none";
-            dummy2.style.borderTop = "none";
-            break;
-          case 3:
-            dummy1.style.border = "0.5em solid white";
-            dummy1.style.borderLeft = "none";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderLeft = "none";
-            dummy2.style.borderTop = "none";
-            break;
-          case 4:
-            dummy1.style.border = "0.5em solid white";
-            dummy1.style.borderTop = "none";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderLeft = "none";
-            dummy2.style.borderTop = "none";
-            dummy2.style.borderBottom = "none";
-            break;
-          case 5:
-            dummy1.style.border = "0.5em solid white";
-            dummy1.style.borderRight = "none";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderLeft = "none";
-            dummy2.style.borderTop = "none";
-            break;
-          case 6:
-            dummy1.style.border = "0.5em solid white";
-            dummy1.style.borderRight = "none";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderTop = "none";
-            break;
-          case 7:
-            dummy1.style.border = "0.5em solid white";
-            dummy1.style.borderLeft = "none";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderTop = "none";
-            dummy2.style.borderLeft = "none";
-            dummy2.style.borderBottom = "none";
-            break;
-          case 8:
-            dummy1.style.border = "0.5em solid white";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderTop = "none";
-            break;
-          case 9:
-            dummy1.style.border = "0.5em solid white";
-            dummy2.style.border = "0.5em solid white";
-            dummy2.style.borderTop = "none";
-            dummy2.style.borderLeft = "none";
-            break;
+        if (h == 0) {
+          h = 12;
         }
+
+        if (h > 12) {
+          h = h - 12;
+          session = "PM";
+        }
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+
+        setTimeout(showTime, 1000);
       }
+
+      showTime();
     </script>
   </body>
 </html>
